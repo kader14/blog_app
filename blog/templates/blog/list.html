@@ -3,10 +3,14 @@
 {% block title %}Articles{% endblock  %}
 
 {% block content %}
-{% for article in articles  %}
-    <h2>{{article.title}} </h2>
-    <p>نشر {{article.publish}} بواسطة {{article.author}} </p>
-    {{article.body|truncatewords:50|linebreaks}}
-{% endfor %}
+    {% for article in articles  %}
+        <h2>
+            <a href="{% url 'blog:a' article.id %}">
+             {{ article.title }}
+             </a>
+         </h2>
+        <p>نشر {{article.publish}} بواسطة {{article.author}} </p>
+        {{article.body|truncatewords:50|linebreaks}}
+    {% endfor %}
 {% endblock  %}
 
