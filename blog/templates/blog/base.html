@@ -1,0 +1,41 @@
+{% load static  %}
+<!DOCTYPE html>
+<html dir="rtl">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class= "header">
+            <h2>مدونتي الشخصية</h2>
+        </div>
+        <div class="row">
+                <div class="leftcolumn">
+                    <div class="card">
+                        {% block content %}
+                        {% endblock%}
+                    </div>
+                </div>
+                <div class="rightcolumn">
+                    <div class="card">
+                        <h2>المدونة</h2>
+                        <p>مدونة الموقع</p>
+                    </div>
+                    <div class="card">
+                        <h3>أخر المواضيع</h3>
+                        {% block latestArtcile %}
+                        {% endblock%}
+                    </div>
+                    <div class="card">
+                        <h3>Most Commented Article</h3>
+                        {% block mostCommentedArticle %}
+                        {% endblock %}
+                    </div>
+                </div>
+        </div>
+
+            <div class="footer">
+                <h5>Copyright 2023 جميع الحقوق محفوظة </h5>
+            </div>    
+    </body>
+</html>
