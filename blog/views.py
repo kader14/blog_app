@@ -12,9 +12,10 @@ def list_of_articles(request):
     pass
 
 
-def article_details(request,id):
+def article_details(request,article):
     try:
-        article = get_object_or_404(Article, id= id,status=Article.Status.PUBLISHED)
+        article = get_object_or_404(Article, status=Article.Status.PUBLISHED,
+                                    slug= article)
     except Article.DoesNotExist:
         raise Http404("لا توجد أي مقالة")   
     return render(request, 'blog/detail.html', {'article': article})
