@@ -11,7 +11,7 @@
 <h2>المقالات ذات الصلة</h2>
 {% for article in similar_articles %}
     <p>
-        <a href="{{ article.get_canonical_url }}">{{ article.title }}</a>
+        <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
     </p>
 {% empty %}
     لا يوجد أي مقالات ذات صلة
@@ -38,7 +38,7 @@
 {% endfor %}
 {% include "blog/comment_form.html" %}
 
-<a href = '/blog/'>
+<a href = '/'>
     العودة إلى المقالات
 </a>
 {% endblock %}
