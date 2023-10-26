@@ -5,8 +5,8 @@ from django.http import HttpResponse
 from django.http import Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from taggit.models import Tag
-
 from django.views.decorators.http import require_GET, require_POST
+from django.db.models import Count
 
 # Create your views here.
 
@@ -36,6 +36,13 @@ def article_details(request,article):
         comments = article.comments.filter(active=True)
         # Form for users to write comment
         form = CommentForm()
+
+        # Retrieving list of similar articles
+        article_tags_ids = article.tags.values_list('id', flat=True)
+        similar_published_articles = Article.publishedArticles.filter(tags__in=article_tags_ids)\
+                                .exclude(id=article.id)
+        similar_articles = similar_published_articles.annotate(same_tags_in_article=Count('tags'))\
+                                .order_by('-same_tags_in_article','-publish')[:3]
     except Article.DoesNotExist:
         raise Http404("لا توجد أي مقالة")   
     return render(request, 'blog/detail.html', {'article': article, 'comments': comments,'form': form})

@@ -8,6 +8,14 @@
     نشر {{article.publish}} بواسطة {{article.author}}
 </p>
 {{ article.body|linebreaks }}
+<h2>المقالات ذات الصلة</h2>
+{% for article in similar_articles %}
+    <p>
+        <a href="{{ article.get_canonical_url }}">{{ article.title }}</a>
+    </p>
+{% empty %}
+    لا يوجد أي مقالات ذات صلة
+{% endfor %}
 {% with comments.count as total_comments %}
     <h2>
         {{ total_comments }}تعليق {{ total_comments|pluralize }}
@@ -20,6 +28,8 @@
             تعليق {{ forloop.counter }} بواسطة {{ comment.name }} على {{ comment.created }}
         </p>
         {{ comment.body|linebreaks }}
+
+        
     </div>
 {% empty %}
     <div>
