@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+
+{% block title %}إضافة تعليق{% endblock %}
+
+{% block content %}
+    {% if comment %}
+        <h2>تم نشر التعليق</h2>
+        <p><a href="{{ article.get_canonical_url }}">العودة إلى المقالة</a></p>
+    {% else %}
+        {% include "blog/comment_form.html" %}
+    {% endif %}
+
+{% endblock %}

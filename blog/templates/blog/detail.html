@@ -8,4 +8,27 @@
     نشر {{article.publish}} بواسطة {{article.author}}
 </p>
 {{ article.body|linebreaks }}
+{% with comments.count as total_comments %}
+    <h2>
+        {{ total_comments }}تعليق {{ total_comments|pluralize }}
+    </h2>
+{% endwith %}
+
+{% for comment in comments %}
+    <div>
+        <p>
+            تعليق {{ forloop.counter }} بواسطة {{ comment.name }} على {{ comment.created }}
+        </p>
+        {{ comment.body|linebreaks }}
+    </div>
+{% empty %}
+    <div>
+        <p>لا يوجد أي تعليق</p>
+    </div>
+{% endfor %}
+{% include "blog/comment_form.html" %}
+
+<a href = '/blog/'>
+    العودة إلى المقالات
+</a>
 {% endblock %}
