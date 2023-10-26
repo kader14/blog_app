@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from taggit.managers import TaggableManager
 
 class Article(models.Model):
     class ArticlePublishedManager(models.Manager):
@@ -26,6 +27,8 @@ class Article(models.Model):
 
     objects = models.Manager() #The default manager
     publishedArticles = ArticlePublishedManager() #The custom manager
+    tags = TaggableManager()
+
     class Meta:
         ordering = ['-publish']
         indexes = [
