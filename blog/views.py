@@ -72,3 +72,4 @@ def comment_for_article(request, article_id):
     return render(request, 'blog/comment.html', {'article': article, 'form': form, 'comment': comment})
 
     pass
+
