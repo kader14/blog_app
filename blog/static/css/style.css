@@ -12,8 +12,8 @@ body {
     padding: 10px;
     font-size: 30px;
     text-align: center;
-    background: #29B5F5;
     color: #ffffff;
+    background-image: url(../cropped-category-security.jpg); 
 }
 
 .header h2 {
